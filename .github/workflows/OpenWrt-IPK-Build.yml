@@ -114,14 +114,14 @@ jobs:
           fi
           IFS=',; ' read -ra PKG_ARRAY <<< "$PKG_SOURCE"
           
-          git clone -b lede --depth=1 https://github.com/somemoo/OpenWrt-packages
+          git clone -b master --depth=1 https://github.com/xuanranran/openwrt-package
           git clone -b main --depth=1 https://github.com/kiddin9/kwrt-packages
           
           declare -a matrix_entries
           for arch in "${ARCH_ARRAY[@]}"; do
             for pkg in "${PKG_ARRAY[@]}"; do
               if [ -d "OpenWrt-packages/$pkg" ]; then
-                matrix_entries+=("{\"target\":\"$pkg\",\"repo_url\":\"https://github.com/somemoo/OpenWrt-packages\",\"branch\":\"lede\",\"arch\":\"$arch\"}")
+                matrix_entries+=("{\"target\":\"$pkg\",\"repo_url\":\"https://github.com/xuanranran/openwrt-package\",\"branch\":\"master\",\"arch\":\"$arch\"}")
               elif [ -d "kwrt-packages/$pkg" ]; then
                 matrix_entries+=("{\"target\":\"$pkg\",\"repo_url\":\"https://github.com/kiddin9/kwrt-packages\",\"branch\":\"main\",\"arch\":\"$arch\"}")
               fi
